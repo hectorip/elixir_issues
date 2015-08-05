@@ -7,4 +7,7 @@ defmodule CliTest do
   test ":help is returned by option parsing with --help option" do
     assert parse_args(["--help", "..."]) == :help
   end
+  test "it returns the values as a tuple" do
+    assert parse_args(["a_user", "the_project", "10"]) == {"a_user", "the_project", 10}
+  end
 end
