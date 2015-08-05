@@ -1,5 +1,5 @@
 
-defmodule CLI do
+defmodule Issues.CLI do
   @default_count 5
   @moduledoc """
     Dispatch to the several functions that generate
