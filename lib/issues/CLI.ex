@@ -7,7 +7,11 @@ defmodule Issues.CLI do
     a github repo) or help for the program.
   """
   def run(argv) do
-    parse_args(argv)
+    argv |>
+    parse_args |>
+    GithubRetriever.get |>
+    sort_result |>
+    display_table
   end
 
   @doc """
