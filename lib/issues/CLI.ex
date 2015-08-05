@@ -1,6 +1,6 @@
 
 defmodule Issues.CLI do
-  @default_count 5
+  @default_count 10
   @moduledoc """
     Dispatch to the several functions that generate
     a the result(a table of the last _n_  issues in
@@ -26,7 +26,7 @@ defmodule Issues.CLI do
         -> :help
 
       { _, [user, project, count], _ }
-        -> { user, project, count }
+        -> { user, project, String.to_integer(count) }
       
       {_, [user, project], _}
         -> { user, project, @default_count }
