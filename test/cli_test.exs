@@ -4,4 +4,7 @@ defmodule CliTest do
   test ":help is returned by option parsing with -h option" do
     assert parse_args(["-h", "anything"]) == :help
   end
+  test ":help is returned by option parsing with --help option" do
+    assert parse_args(["--help", "..."]) == :help
+  end
 end
