@@ -7,11 +7,11 @@ defmodule Issues.CLI do
     a github repo) or help for the program.
   """
   def run(argv) do
-    argv |>
-    parse_args |>
-    GithubRetriever.get |>
-    sort_result |>
-    display_table
+    argv
+      |> parse_args
+      |> process
+      #sort_result |>
+      #display_table
   end
 
   @doc """
@@ -31,11 +31,22 @@ defmodule Issues.CLI do
 
       { _, [user, project, count], _ }
         -> { user, project, String.to_integer(count) }
-      
+
       {_, [user, project], _}
         -> { user, project, @default_count }
-     
+
       _ -> :help
     end
   end
+
+  @doc """
+    Shows help when requested
+  """
+  def process(:help) do
+    IO. puts """
+    usage: issues <user> <project> [ count | #{@default_count} ]
+    """
+    System.halt(0)
+  end
+
 end
