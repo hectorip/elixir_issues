@@ -48,5 +48,11 @@ defmodule Issues.CLI do
     """
     System.halt(0)
   end
-
+  
+  @doc """
+    Process username, repo and number of requested issues
+  """
+  def process({user, project, _count}) do
+    Issues.GithubRetriever.get(user, project)
+  end
 end
