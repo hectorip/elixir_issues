@@ -54,5 +54,13 @@ defmodule Issues.CLI do
   """
   def process({user, project, _count}) do
     Issues.GithubRetriever.get(user, project)
+    |> decode_response
+  end
+
+  def decode_response({:ok, body}), do: body
+  def decode_response({:error, body}) do
+    {_, message} = List.keyfind(body, "message", 0)
+    IO.puts "Error fetching from Github: #{message}"
+    System.halt(2)
   end
 end
