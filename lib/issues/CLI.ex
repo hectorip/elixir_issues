@@ -55,6 +55,8 @@ defmodule Issues.CLI do
   def process({user, project, _count}) do
     Issues.GithubRetriever.get(user, project)
       |> decode_response
+      |> convert_to_list_of_hashdicts
+      |> sort_into_ascending_order
   end
 
   def decode_response({:ok, body}), do: body
@@ -67,4 +69,9 @@ defmodule Issues.CLI do
     list
       |> Enum.map(&Enum.into(&1, HashDict.new))
   end
+  def sort_into_ascending_order(list) do
+    Enum.sort list,
+              fn item_1, item_2 -> item_1["created_at"] <= item_2["created_at"] end
+  end
 end
+
