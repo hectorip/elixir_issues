@@ -54,7 +54,7 @@ defmodule Issues.CLI do
   """
   def process({user, project, _count}) do
     Issues.GithubRetriever.get(user, project)
-    |> decode_response
+      |> decode_response
   end
 
   def decode_response({:ok, body}), do: body
