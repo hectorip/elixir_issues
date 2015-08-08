@@ -10,7 +10,10 @@ defmodule Issues.CLI do
     argv
       |> parse_args
       |> process
-      #|> display_table
+      |> display_table([ [name: :id, label: "ID"],
+        [name: :created_at, label: "Created at"],
+        [name: :title, label: "Title"]
+      ])
   end
 
   @doc """
@@ -74,8 +77,18 @@ defmodule Issues.CLI do
               fn item_1, item_2 -> item_1["created_at"] <= item_2["created_at"] end
   end
   def display_table(list, headers) do
-    max = for h <-headers, do: max(list, h[:name])
-    #Enum.each 
+    max = for h <-headers, do: {h[:name], maxx(list, h[:name]) + 2}
+    s = ''
+    Enum.each headers, fn h ->
+      IO.puts (String.ljust h[:label], max[h[:name]]) <> "|"
+      s = s <> String.duplicate "-", max[h[:name]] <> "+"
+    end
+    IO.puts s
+    Enum.each list, fn element ->
+      Enum.each headers, fn header ->
+        IO.puts (String.ljust element[header[:name]], max[header[:name]]) <> "|"
+      end
+    end
   end
   def maxx(list,name), do: Enum.max(pluck(list, name))
   def pluck(list,name), do: (for x <- list, do: String.length(x[name]))
