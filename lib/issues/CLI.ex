@@ -77,12 +77,14 @@ defmodule Issues.CLI do
     max = for h <-headers, do: max(list, h[:name])
     #Enum.each 
   end
-  def maxx(list,name), do: max_from_column((for x <- list, do: x[name]), 0)
+  def maxx(list,name), do: max_from_column((pluck(list, name)), 0)
+  def pluck(list,name), do: (for x <- list, do: x[name])
   def max_from_column([], c_max), do: c_max
   def max_from_column([h | t], c_max) when length(h) >= c_max do
-      max_from_column(t, length(h))
+    IO.puts h
+    max_from_column(t, length(h))
   end
-  def max_from_column([h|t], c_max) do
+  def max_from_column([_h|t], c_max) do
        max_from_column(t, c_max)
   end
 end

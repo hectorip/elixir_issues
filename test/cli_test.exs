@@ -4,7 +4,8 @@ defmodule CliTest do
     parse_args: 1,
     sort_into_ascending_order: 1,
     convert_to_list_of_hashdicts: 1,
-    maxx: 2
+    maxx: 2,
+    pluck: 2
   ]
   test ":help is returned by option parsing with -h option" do
     assert parse_args(["-h", "anything"]) == :help
@@ -31,5 +32,9 @@ defmodule CliTest do
   test "Max is returning max" do
     list = fake_issues_list(["caaa", "dss", "123456", "1", "4"])
     assert maxx(list, "created_at") == 6
+  end
+  test "Pluck extracts a column from a collection" do
+     list = fake_issues_list(["caaa", "dss", "123456", "1", "4"])
+     assert pluck(list, "created_at") == ["caaa", "dss", "123456", "1", "4"]
   end
 end
