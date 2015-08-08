@@ -33,8 +33,8 @@ defmodule CliTest do
     list = fake_issues_list(["caaa", "dss", "123456", "1", "4"])
     assert maxx(list, "created_at") == 6
   end
-  test "Pluck extracts a column from a collection" do
+  test "Pluck extracts max values from a column in a collection" do
      list = fake_issues_list(["caaa", "dss", "123456", "1", "4"])
-     assert pluck(list, "created_at") == ["caaa", "dss", "123456", "1", "4"]
+     assert pluck(list, "created_at") == [4, 3, 6, 1, 1]
   end
 end
