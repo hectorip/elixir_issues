@@ -94,15 +94,7 @@ defmodule Issues.CLI do
       IO.puts ""
     end
   end
-  def maxx(list, name, trans) do
-    #IO.inspect list
-    IO.puts name
-    Enum.max(pluck(list, name, trans))
-  end
-  def pluck(list, name, f \\ &(&1)), do: (for x <- list do
-    IO.inspect x[name]
-    IO.puts x["id"]
-    String.length(f.(x[name]))
-    end)
+  def maxx(list, name, trans), do: Enum.max(pluck(list, name, trans))
+  def pluck(list, name, f \\ &(&1)), do: ( for x <- list, do: String.length( f.(x[name]) ) )
 end
 
