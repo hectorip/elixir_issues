@@ -68,25 +68,29 @@ defmodule Issues.CLI do
     IO.puts "Error fetching from Github: #{message}"
     System.halt(2)
   end
+
   def convert_to_list_of_hashdicts(list) do
     list
       |> Enum.map(&Enum.into(&1, HashDict.new))
   end
+
   def sort_into_ascending_order(list) do
     Enum.sort list,
               fn item_1, item_2 -> item_1["created_at"] <= item_2["created_at"] end
   end
+
   def display_table(list, headers) do
     max = for h <- headers, do: {h[:name], maxx(list, h[:name], h[:trans]) + 2 }
     max = Enum.into(max, HashDict.new)
-    s = ''
+
     Enum.each headers, fn h ->
       IO.write " " <> (String.ljust h[:label], max[h[:name]]) <> "|"
-      #s = s <> (String.duplicate "-", max[h[:name]]) <> "+"
     end
+
     IO.puts ""
     Enum.each headers, fn h -> IO.write (String.duplicate "-", max[h[:name]] + 1 ) <> "+" end
     IO.puts ""
+
     Enum.each list, fn element ->
       Enum.each headers, fn header ->
         IO.write " " <> (String.ljust header[:trans].(element[header[:name]]), max[header[:name]]) <> "|"
@@ -94,7 +98,9 @@ defmodule Issues.CLI do
       IO.puts ""
     end
   end
+
   def maxx(list, name, trans), do: Enum.max(pluck(list, name, trans))
+
   def pluck(list, name, f \\ &(&1)), do: ( for x <- list, do: String.length( f.(x[name]) ) )
 end
 
