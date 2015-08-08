@@ -10,9 +10,9 @@ defmodule Issues.CLI do
     argv
       |> parse_args
       |> process
-      |> display_table([ [name: "id", label: "ID", trans: &(Integer.to_string(&1))],
-        [name: "created_at", label: "Created at", trans: &(&1)],
-        [name: "title", label: "Title", trans: &(&1)]
+      |> display_table([ [name: "id", label: "ID"],
+        [name: "created_at", label: "Created at"],
+        [name: "title", label: "Title"]
       ])
   end
 
@@ -80,7 +80,7 @@ defmodule Issues.CLI do
   end
 
   def display_table(list, headers) do
-    max = for h <- headers, do: {h[:name], maxx(list, h[:name], h[:trans]) + 2 }
+    max = for h <- headers, do: {h[:name], maxx(list, h[:name]) + 2 }
     max = Enum.into(max, HashDict.new)
 
     Enum.each headers, fn h ->
@@ -93,14 +93,17 @@ defmodule Issues.CLI do
 
     Enum.each list, fn element ->
       Enum.each headers, fn header ->
-        IO.write " " <> (String.ljust header[:trans].(element[header[:name]]), max[header[:name]]) <> "|"
+        IO.write " " <> (String.ljust printable(element[header[:name]]), max[header[:name]]) <> "|"
       end
       IO.puts ""
     end
   end
 
-  def maxx(list, name, trans), do: Enum.max(pluck(list, name, trans))
+  def maxx(list, name), do: Enum.max(pluck(list, name))
 
-  def pluck(list, name, f \\ &(&1)), do: ( for x <- list, do: String.length( f.(x[name]) ) )
+  def pluck(list, name), do: ( for x <- list, do: String.length( printable(x[name]) ) )
+
+  def printable(data) when is_binary(data), do: data
+  def printable(data), do: to_string(data)
 end
 
