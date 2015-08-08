@@ -81,14 +81,17 @@ defmodule Issues.CLI do
     max = Enum.into(max, HashDict.new)
     s = ''
     Enum.each headers, fn h ->
-      IO.write (String.ljust h[:label], max[h[:name]]) <> "|"
+      IO.write (String.ljust h[:label], max[h[:name]]) <> "| "
       #s = s <> (String.duplicate "-", max[h[:name]]) <> "+"
     end
-    IO.puts s
+    IO.puts ""
+    Enum.each headers, fn h -> IO.write (String.duplicate "-", max[h[:name]]) <> "+" end
+    IO.puts ""
     Enum.each list, fn element ->
       Enum.each headers, fn header ->
-        IO.write (String.ljust element[header[:name]], max[header[:name]]) <> "|"
+        IO.write (String.ljust header[:trans].(element[header[:name]]), max[header[:name]]) <> "| "
       end
+      IO.puts ""
     end
   end
   def maxx(list, name, trans) do
