@@ -80,7 +80,7 @@ defmodule Issues.CLI do
   end
 
   def display_table(list, headers) do
-    max = for h <- headers, do: {h[:name], maxx(list, h[:name]) + 2 }
+    max = for h <- headers, do: {h[:name], max_by_column(list, h[:name]) + 2 }
     max = Enum.into(max, HashDict.new)
 
     Enum.each headers, fn h ->
@@ -99,7 +99,7 @@ defmodule Issues.CLI do
     end
   end
 
-  def maxx(list, name), do: Enum.max(pluck(list, name))
+  def max_by_column(list, name), do: Enum.max(pluck(list, name))
 
   def pluck(list, name), do: ( for x <- list, do: String.length( printable(x[name]) ) )
 
