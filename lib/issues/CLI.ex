@@ -10,9 +10,9 @@ defmodule Issues.CLI do
     argv
       |> parse_args
       |> process
-      |> display_table([ [name: :id, label: "ID"],
-        [name: :created_at, label: "Created at"],
-        [name: :title, label: "Title"]
+      |> display_table([ [name: "id", label: "ID", trans: &(Integer.to_string(&1))],
+        [name: "created_at", label: "Created at", trans: &(&1)],
+        [name: "title", label: "Title", trans: &(&1)]
       ])
   end
 
@@ -77,20 +77,29 @@ defmodule Issues.CLI do
               fn item_1, item_2 -> item_1["created_at"] <= item_2["created_at"] end
   end
   def display_table(list, headers) do
-    max = for h <-headers, do: {h[:name], maxx(list, h[:name]) + 2}
+    max = for h <- headers, do: {h[:name], maxx(list, h[:name], h[:trans]) + 2 }
+    max = Enum.into(max, HashDict.new)
     s = ''
     Enum.each headers, fn h ->
-      IO.puts (String.ljust h[:label], max[h[:name]]) <> "|"
-      s = s <> String.duplicate "-", max[h[:name]] <> "+"
+      IO.write (String.ljust h[:label], max[h[:name]]) <> "|"
+      #s = s <> (String.duplicate "-", max[h[:name]]) <> "+"
     end
     IO.puts s
     Enum.each list, fn element ->
       Enum.each headers, fn header ->
-        IO.puts (String.ljust element[header[:name]], max[header[:name]]) <> "|"
+        IO.write (String.ljust element[header[:name]], max[header[:name]]) <> "|"
       end
     end
   end
-  def maxx(list,name), do: Enum.max(pluck(list, name))
-  def pluck(list,name), do: (for x <- list, do: String.length(x[name]))
+  def maxx(list, name, trans) do
+    #IO.inspect list
+    IO.puts name
+    Enum.max(pluck(list, name, trans))
+  end
+  def pluck(list, name, f \\ &(&1)), do: (for x <- list do
+    IO.inspect x[name]
+    IO.puts x["id"]
+    String.length(f.(x[name]))
+    end)
 end
 
