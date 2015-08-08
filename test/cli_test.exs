@@ -1,6 +1,11 @@
 defmodule CliTest do
   use ExUnit.Case
-  import Issues.CLI, only: [parse_args: 1, sort_into_ascending_order: 1, convert_to_list_of_hashdicts: 1]
+  import Issues.CLI, only: [
+    parse_args: 1,
+    sort_into_ascending_order: 1,
+    convert_to_list_of_hashdicts: 1,
+    maxx: 2
+  ]
   test ":help is returned by option parsing with -h option" do
     assert parse_args(["-h", "anything"]) == :help
   end
@@ -22,5 +27,9 @@ defmodule CliTest do
     data = for value <- list,
            do: [{"created_at", value}, {"more_data", "..."}]
     convert_to_list_of_hashdicts(data)
+  end
+  test "Max is returning max" do
+    list = fake_issues_list(["caaa", "dss", "123456", "1", "4"])
+    assert maxx(list, "created_at") == 6
   end
 end

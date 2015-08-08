@@ -10,8 +10,7 @@ defmodule Issues.CLI do
     argv
       |> parse_args
       |> process
-      #sort_result |>
-      #display_table
+      #|> display_table
   end
 
   @doc """
@@ -73,6 +72,18 @@ defmodule Issues.CLI do
   def sort_into_ascending_order(list) do
     Enum.sort list,
               fn item_1, item_2 -> item_1["created_at"] <= item_2["created_at"] end
+  end
+  def display_table(list, headers) do
+    max = for h <-headers, do: max(list, h[:name])
+    #Enum.each 
+  end
+  def maxx(list,name), do: max_from_column((for x <- list, do: x[name]), 0)
+  def max_from_column([], c_max), do: c_max
+  def max_from_column([h | t], c_max) when length(h) >= c_max do
+      max_from_column(t, length(h))
+  end
+  def max_from_column([h|t], c_max) do
+       max_from_column(t, c_max)
   end
 end
 
