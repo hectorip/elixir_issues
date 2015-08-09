@@ -9,5 +9,8 @@ defmodule Issues.GithubRetriever do
   def url(user, project) do
     "#{@github_url}/repos/#{user}/#{project}/issues"
   end
-  def handle_response({ status , response}), do: { status, :jsx.decode(response.body) }
+  def handle_response({ status , response}) do
+    Logger.info fn -> IO.inspect response end
+    { status, :jsx.decode(response.body) }
+  end
 end
