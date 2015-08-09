@@ -1,4 +1,5 @@
 defmodule Issues.GithubRetriever do
+  require Logger
   @user_agent [{"User-agent", "Elixir hectorivanpatriciomoreno@gmail.com"}]
   @github_url Application.get_env(:issues, :github_url)
   def get(user, project) do
