@@ -11,7 +11,7 @@ defmodule Issues.GithubRetriever do
     "#{@github_url}/repos/#{user}/#{project}/issues"
   end
   def handle_response({ status , response}) do
-    Logger.info fn -> IO.inspect response end
+    Logger.info fn -> "Response: #{response.status_code}" end
     { status, :jsx.decode(response.body) }
   end
 end
