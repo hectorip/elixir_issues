@@ -105,7 +105,11 @@ defmodule Issues.CLI do
   Given a collection of dictionaries, it returns a collection of  the lenghts
   by column name
   ## Example
-    iex > list = []
+
+    iex> list = [Enum.into([{"a", "12"},{"b", "245"},{"c", "31235"}], HashDict.new),
+    ...>         Enum.into([{"a", "4"},{"b", "53"},{"c", "6123"}], HashDict.new)]
+    iex> Issues.CLI.pluck(list, "a")
+    [2, 1]
   """
   def pluck(list, name), do: ( for x <- list, do: String.length( printable(x[name]) ) )
 
