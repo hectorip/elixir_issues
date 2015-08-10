@@ -100,7 +100,13 @@ defmodule Issues.CLI do
   end
 
   def max_by_column(list, name), do: Enum.max(pluck(list, name))
-
+  
+  @doc """
+  Given a collection of dictionaries, it returns a collection of  the lenghts
+  by column name
+  ## Example
+    iex > list = []
+  """
   def pluck(list, name), do: ( for x <- list, do: String.length( printable(x[name]) ) )
 
   def printable(data) when is_binary(data), do: data
