@@ -78,7 +78,9 @@ defmodule Issues.CLI do
     Enum.sort list,
               fn item_1, item_2 -> item_1["created_at"] <= item_2["created_at"] end
   end
-
+  """
+  Formats data to table
+  """
   def display_table(list, headers) do
     max = for h <- headers, do: {h[:name], max_by_column(list, h[:name]) + 2 }
     max = Enum.into(max, HashDict.new)
