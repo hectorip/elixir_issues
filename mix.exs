@@ -28,7 +28,8 @@ defmodule Issues.Mixfile do
   defp deps do
     [
       { :httpoison, "~> 0.6" },
-      { :jsx,       "~> 2.0" }
+      { :jsx,       "~> 2.0" },
+      { :ex_doc, github: "elixir-lang/ex_doc" }
     ]
   end
 
