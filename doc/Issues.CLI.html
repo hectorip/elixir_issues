@@ -1,0 +1,347 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+        <title>Issues.CLI – issues v0.0.1</title>
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.8.4">
+
+    <link rel="stylesheet" href="dist/app.css">
+  </head>
+  <body>
+
+    
+    <div class="row row-offcanvas row-offcanvas-left">
+<section id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas">
+  <p class="pull-right visible-xs">
+  <button type="button" class="btn btn-default btn-sm" data-toggle="offcanvas">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+  </p>
+
+  <h1 id="full_list_header">
+    
+      issues v0.0.1
+    
+  </h1>
+
+  <h2 id="sub_list_header">
+    
+    <a href="overview.html">Overview</a>
+  </h2>
+
+  <div class="nav">
+    
+      <span><a id="modules_list" href="#full_list">Modules</a></span>
+    
+    
+      <span role="presentation" class="disabled">Exceptions</span>
+    
+    
+      <span role="presentation" class="disabled">Protocols</span>
+    
+  </div>
+
+  <div id="search">
+    <div class="col-xs-10">
+      <div class="input-group input-group-sm">
+        <label for="search_field" class="sr-only">Search</label>
+        <input type="text" id="search_field" class="form-control" placeholder="Search" autocomplete="off" autofocus="autofocus" results="0">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-xs-10 -->
+    <div class="col-xs-2" id="spinning">
+      <span></span>
+    </div><!-- /.col-xs-2 -->
+  </div><!-- /#search .row -->
+
+  <script src="dist/sidebar_items.js" defer></script>
+
+  <ul id="full_list">
+  </ul>
+
+  <div id="no_results"></div>
+</section><!--/.sidebar-offcanvas -->
+<section id="content" class="col-xs-12 col-sm-9">
+
+
+      <div class="breadcrumbs">
+        <button type="button" class="btn btn-default btn-sm" data-toggle="offcanvas">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+        issues v0.0.1 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="Issues.html#content">Issues</a> &rarr; <a href="Issues.CLI.html#content">CLI</a>
+      </div>
+
+      <h1>
+        Issues.CLI
+        
+      </h1>
+
+      <ul class="summary_links">
+        
+          <li><a href="#summary_details">Summary</a></li>
+        
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+      </ul>
+
+      
+        <section id="moduledoc" class="docstring">
+          <p>  Dispatch to the several functions that generate
+  a the result(a table of the last <em>n</em>  issues in
+  a github repo) or help for the program.</p>
+
+        </section>
+      
+
+      
+
+      
+        <section id="summary_details" class="details_list">
+          <h1>Summary</h1>
+          <table class="summary">
+            <tr>
+  <td class="summary_signature"><a href="#convert_to_list_of_hashdicts/1">convert_to_list_of_hashdicts(list)</a></td>
+  <td class="summary_synopsis"></td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#decode_response/1">decode_response(arg1)</a></td>
+  <td class="summary_synopsis"></td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#display_table/2">display_table(list, headers)</a></td>
+  <td class="summary_synopsis"></td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#main/1">main(argv)</a></td>
+  <td class="summary_synopsis"></td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#max_by_column/2">max_by_column(list, name)</a></td>
+  <td class="summary_synopsis"></td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#parse_args/1">parse_args(argv)</a></td>
+  <td class="summary_synopsis"><p><code class="inline">argv</code> can be -h or —help. which returns :help</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#pluck/2">pluck(list, name)</a></td>
+  <td class="summary_synopsis"><p>Given a collection of dictionaries, it returns a collection of  the lenghts
+by column name</p>
+<h2>Example</h2>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#printable/1">printable(data)</a></td>
+  <td class="summary_synopsis"><p>This method return the printable version of any value you give to it
+this was inspired by the book, I took a different approach</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#process/1">process(arg1)</a></td>
+  <td class="summary_synopsis"><p>Process username, repo and number of requested issues</p>
+</td>
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#sort_into_ascending_order/1">sort_into_ascending_order(list)</a></td>
+  <td class="summary_synopsis"></td>
+</tr>
+
+          </table>
+        </section>
+      
+
+      
+
+      
+        <section id="functions_details" class="details_list">
+          <h1>Functions</h1>
+          <section class="detail">
+  <div class="detail_header" id="convert_to_list_of_hashdicts/1">
+    <span class="signature"><strong>convert_to_list_of_hashdicts(list)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#convert_to_list_of_hashdicts/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="decode_response/1">
+    <span class="signature"><strong>decode_response(arg1)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#decode_response/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="display_table/2">
+    <span class="signature"><strong>display_table(list, headers)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#display_table/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="main/1">
+    <span class="signature"><strong>main(argv)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#main/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="max_by_column/2">
+    <span class="signature"><strong>max_by_column(list, name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#max_by_column/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="parse_args/1">
+    <span class="signature"><strong>parse_args(argv)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#parse_args/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p><code class="inline">argv</code> can be -h or —help. which returns :help.</p>
+<p>Otherwise it is a githun user name, project name,
+and optionally the number of tentries format.
+ Return a tuple of <code class="inline">{user, project, count}</code>, or <code class="inline">:help</code> if -h or
+ —help were received.</p>
+
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="pluck/2">
+    <span class="signature"><strong>pluck(list, name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#pluck/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>Given a collection of dictionaries, it returns a collection of  the lenghts
+by column name</p>
+<h2>Example</h2>
+<p>  iex&gt; list = [Enum.into([{"a", "12"},{"b", "245"},{"c", "31235"}], HashDict.new),
+  ...>         Enum.into([{"a", "4"},{"b", "53"},{"c", "6123"}], HashDict.new)]
+  iex&gt; Issues.CLI.pluck(list, “a”)
+  [2, 1]</p>
+
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="printable/1">
+    <span class="signature"><strong>printable(data)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#printable/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>This method return the printable version of any value you give to it
+this was inspired by the book, I took a different approach</p>
+
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="process/1">
+    <span class="signature"><strong>process(arg1)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#process/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>  Process username, repo and number of requested issues</p>
+
+  </section>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="sort_into_ascending_order/1">
+    <span class="signature"><strong>sort_into_ascending_order(list)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#sort_into_ascending_order/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+  
+</section>
+
+        </section>
+      
+
+      
+
+      
+      </section> <!--/content -->
+</div><!--/row -->
+
+    <script src="dist/app.js"></script>
+  </body>
+</html>
+
